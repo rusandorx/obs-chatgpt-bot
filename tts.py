@@ -28,5 +28,6 @@ def play_audio(text: str) -> None:
         print('End of audio')
         print('--------------------------------------------')
         os.remove(audio_path)
-    except:
+    except Exception as e:
         print(f'Failed playing audio: {text}')
+        print(f'Error: {e}')

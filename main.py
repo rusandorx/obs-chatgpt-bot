@@ -5,7 +5,6 @@ from tts import play_audio
 
 load_dotenv()
 
-print('key -', os.environ.get("OPENAI_API_KEY"))
 
 client = OpenAI(
     api_key=os.environ.get("OPENAI_API_KEY"),
