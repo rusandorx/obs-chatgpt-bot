@@ -30,6 +30,3 @@ def play_audio(text: str) -> None:
         os.remove(audio_path)
     except:
         print(f'Failed playing audio: {text}')
-
-
-play_audio("Обычное аудио аааууууу")
