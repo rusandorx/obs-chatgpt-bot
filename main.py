@@ -1,20 +1,9 @@
-import os
-from dotenv import load_dotenv
-from openai import OpenAI
 from tts import play_audio
+# from stt import listen
+from obs import set_text
+from gpt import send_message
 
-load_dotenv()
+response = send_message("Привет чем занимаешься")
 
-
-client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-    base_url="https://api.proxyapi.ru/openai/v1",
-)
-
-
-def send_message(message: str):
-    chat_completion = client.chat.completions.create(
-        model="gpt-3.5-turbo", messages=[{"role": "user", "content": message}]
-    )
-    print(chat_completion)
-    play_audio(chat_completion.choices[0].message.content)
+set_text(response)
+play_audio(response)
