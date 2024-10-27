@@ -15,7 +15,7 @@ rec = vosk.KaldiRecognizer(model, 16000)
 p = pyaudio.PyAudio()
 
 
-class SSTManager:
+class STTManager:
     def __init__(self):
         self.pressed_stop_key = False
 
