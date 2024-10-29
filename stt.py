@@ -1,7 +1,7 @@
 import vosk
 import pyaudio
 import json
-import keyboard
+import pygame
 
 # Here I have downloaded this model to my PC, extracted the files
 # and saved it in local directory
@@ -16,12 +16,10 @@ p = pyaudio.PyAudio()
 
 
 class STTManager:
-    def __init__(self):
+    def __init__(self, ):
         self.pressed_stop_key = False
 
-        keyboard.on_press_key('q', self.on_pressed_stop_key)
-
-    def on_pressed_stop_key(self, key):
+    def stop(self):
         self.pressed_stop_key = True
 
     def listen(self):
@@ -34,6 +32,12 @@ class STTManager:
 
         text = ''
         while True:
+
+            for event in pygame.event.get():
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_q:
+                        self.stop()
+
             data = stream.read(4096)
             if rec.AcceptWaveform(data):  # accept waveform of input voice
                 # Parse the JSON result and get the recognized text
