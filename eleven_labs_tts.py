@@ -7,22 +7,31 @@ from elevenlabs.client import ElevenLabs
 
 load_dotenv()
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
-print(ELEVENLABS_API_KEY)
 
 client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 
 
-def text_to_speech_file_eleven_labs(text: str) -> str:
+voices = {
+    "saul_dub": {"id": 'Dyt77XyVgLv7Zjv60RIk', "stability": 0.6, "similarity": 0.7, "style": 0, "speaker_boost": True},
+    "rusandor": {"id": 'nVmhh1Ng3I1FjNWJ46Zb', "stability": 0.7, "similarity": 0.75, "style": 0, "speaker_boost": True},
+}
+
+
+def text_to_speech_file_eleven_labs(text: str, voice: str) -> str | None:
+    if voice not in voices:
+        print('voice is not in voices')
+        return
+    opts = voices[voice]
     response = client.text_to_speech.convert(
-        voice_id="Dyt77XyVgLv7Zjv60RIk",
+        voice_id=opts["id"],
         output_format="mp3_22050_32",
         text=text,
         model_id="eleven_turbo_v2_5",
         voice_settings=VoiceSettings(
-            stability=0.4,
-            similarity_boost=0.7,
-            style=0.1,
-            use_speaker_boost=True
+            stability=opts['stability'],
+            similarity_boost=opts['similarity'],
+            style=opts['style'],
+            use_speaker_boost=opts['speaker_boost']
         )
     )
 
