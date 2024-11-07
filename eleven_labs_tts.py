@@ -14,6 +14,7 @@ client = ElevenLabs(api_key=ELEVENLABS_API_KEY)
 voices = {
     "saul_dub": {"id": 'Dyt77XyVgLv7Zjv60RIk', "stability": 0.6, "similarity": 0.7, "style": 0, "speaker_boost": True},
     "rusandor": {"id": 'nVmhh1Ng3I1FjNWJ46Zb', "stability": 0.7, "similarity": 0.75, "style": 0, "speaker_boost": True},
+    "ramzan": {"id": 'DShsMnazdfKPnA276gRk', "stability": 0.5, "similarity": 0.75, "style": 0, "speaker_boost": True},
 }
 
 
